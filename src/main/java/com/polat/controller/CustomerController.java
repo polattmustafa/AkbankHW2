@@ -27,7 +27,7 @@ public class CustomerController {
         return ResponseEntity.ok(RestResponse.of(customerDTO));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<RestResponse<List<CustomerDTO>>> findAll() {
         var customerDTOList = customerControllerContract.findAll();
         return ResponseEntity.ok(RestResponse.of(customerDTOList));
@@ -37,6 +37,19 @@ public class CustomerController {
     public ResponseEntity<RestResponse<CustomerDTO>> findById(@PathVariable Long id) {
         var customerDTO = customerControllerContract.findById(id);
         return ResponseEntity.ok(RestResponse.of(customerDTO));
+    }
+
+    @GetMapping("/c")
+    public ResponseEntity<RestResponse<List<CustomerDTO>>> findByNameIncludeC() {
+        var customerDTOList = customerControllerContract.findByNameIncludeC();
+        return ResponseEntity.ok(RestResponse.of(customerDTOList));
+    }
+
+    @GetMapping("/june")
+    public ResponseEntity<RestResponse<String>> getCustomersInvoiceCreatedJune() {
+        Double totalAmount = customerControllerContract.getCustomersInvoiceCreatedJune();
+        return ResponseEntity.ok(RestResponse.of(
+                String.format("The total amount of invoices for customers who signed up in June => %s",totalAmount)));
     }
 
 

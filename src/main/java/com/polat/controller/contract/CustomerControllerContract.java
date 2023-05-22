@@ -16,4 +16,7 @@ public interface CustomerControllerContract {
 
     CustomerDTO findById(Long id);
 
+    List<CustomerDTO> findByNameIncludeC();
+
+    Double getCustomersInvoiceCreatedJune();
 }
