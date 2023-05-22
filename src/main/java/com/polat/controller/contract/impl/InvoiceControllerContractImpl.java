@@ -4,11 +4,14 @@ import com.polat.controller.contract.InvoiceControllerContract;
 import com.polat.dto.invoice.InvoiceDTO;
 import com.polat.dto.invoice.InvoiceSaveRequest;
 import com.polat.mapper.InvoiceMapper;
+import com.polat.model.Customer;
 import com.polat.model.Invoice;
+import com.polat.service.CustomerService;
 import com.polat.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -21,10 +24,18 @@ public class InvoiceControllerContractImpl implements InvoiceControllerContract 
 
     private final InvoiceService invoiceService;
 
+    private final CustomerService customerService;
+
     @Override
-    public InvoiceDTO save(InvoiceSaveRequest request) {
+    public InvoiceDTO save(InvoiceSaveRequest request, Long id) {
+        Customer customer = customerService.findByIdWithControl(id);
         Invoice invoice = InvoiceMapper.INSTANCE.convertToInvoice(request);
-        invoice = invoiceService.save(invoice);
+
+        if (customer != null) {
+            invoice.setAmountDate(LocalDateTime.now());
+            invoice.setCustomer(customer);
+            invoice = invoiceService.save(invoice);
+        }
 
         return InvoiceMapper.INSTANCE.convertToInvoiceDTO(invoice);
     }

@@ -21,9 +21,9 @@ public class InvoiceController {
 
     private final InvoiceControllerContract invoiceControllerContract;
 
-    @PostMapping("/save")
-    public ResponseEntity<RestResponse<InvoiceDTO>> save(@RequestBody InvoiceSaveRequest request) {
-        var invoiceDTO = invoiceControllerContract.save(request);
+    @PostMapping("/save/{id}")
+    public ResponseEntity<RestResponse<InvoiceDTO>> save(@RequestBody InvoiceSaveRequest request, @PathVariable Long id) {
+        var invoiceDTO = invoiceControllerContract.save(request, id);
         return ResponseEntity.ok(RestResponse.of(invoiceDTO));
     }
 
