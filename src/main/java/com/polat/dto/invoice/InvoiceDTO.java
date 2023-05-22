@@ -11,5 +11,5 @@ import java.time.LocalDateTime;
 public record InvoiceDTO(Long id,
                          Double amount,
                          LocalDateTime amountDate,
-                         CustomerDTO customerDTO) {
+                         Long customerId) {
 }
