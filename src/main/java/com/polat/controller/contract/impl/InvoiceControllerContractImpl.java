@@ -27,15 +27,14 @@ public class InvoiceControllerContractImpl implements InvoiceControllerContract 
     private final CustomerService customerService;
 
     @Override
-    public InvoiceDTO save(InvoiceSaveRequest request, Long id) {
-        Customer customer = customerService.findByIdWithControl(id);
-        Invoice invoice = InvoiceMapper.INSTANCE.convertToInvoice(request);
+    public InvoiceDTO save(InvoiceSaveRequest request) {
+        Customer customer = customerService.findByIdWithControl(request.customerId());
 
-        if (customer != null) {
-            invoice.setAmountDate(LocalDateTime.now());
-            invoice.setCustomer(customer);
-            invoice = invoiceService.save(invoice);
-        }
+        Invoice invoice = InvoiceMapper.INSTANCE.convertToInvoice(request);
+        invoice.setAmountDate(LocalDateTime.now());
+        invoice.setCustomer(customer);
+
+        invoice = invoiceService.save(invoice);
 
         return InvoiceMapper.INSTANCE.convertToInvoiceDTO(invoice);
     }

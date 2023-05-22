@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface InvoiceControllerContract {
 
-    InvoiceDTO save(InvoiceSaveRequest request, Long id);
+    InvoiceDTO save(InvoiceSaveRequest request);
 
     List<InvoiceDTO> findAll();
 
