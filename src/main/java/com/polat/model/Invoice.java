@@ -1,6 +1,5 @@
 package com.polat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,10 +28,8 @@ public class Invoice extends BaseModel{
     @Column(name = "AMOUNTDATE")
     private LocalDateTime amountDate;
 
-    @ManyToOne(cascade = CascadeType.ALL,
-               fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUSTOMER", nullable = false)
-    @JsonIgnoreProperties("invoiceList")
     Customer customer;
 
 }
