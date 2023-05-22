@@ -9,6 +9,5 @@ import java.util.List;
  */
 public record CustomerDTO(Long id,
                           String name,
-                          String surname,
-                          List<Invoice> invoiceList) {
+                          String surname) {
 }

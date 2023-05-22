@@ -1,6 +1,5 @@
 package com.polat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,9 +31,7 @@ public class Customer extends BaseModel{
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "customer",
-            targetEntity = Invoice.class)
-    @JsonIgnore
+            mappedBy = "customer")
     List<Invoice> invoiceList = new ArrayList<>();
 
 }
