@@ -16,4 +16,9 @@ public interface InvoiceControllerContract {
 
     InvoiceDTO findById(Long id);
 
+    List<InvoiceDTO> findInvoicesAbove();
+
+    Double findAverageInvoicesAbove();
+
+    List<String> findCustomersBelowAmount();
 }

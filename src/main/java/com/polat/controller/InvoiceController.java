@@ -27,7 +27,7 @@ public class InvoiceController {
         return ResponseEntity.ok(RestResponse.of(invoiceDTO));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<RestResponse<List<InvoiceDTO>>> findAll() {
         var invoiceDTOList = invoiceControllerContract.findAll();
         return ResponseEntity.ok(RestResponse.of(invoiceDTOList));
@@ -38,5 +38,25 @@ public class InvoiceController {
         var invoiceDTO = invoiceControllerContract.findById(id);
         return ResponseEntity.ok(RestResponse.of(invoiceDTO));
     }
+
+    @GetMapping("/above")
+    public ResponseEntity<RestResponse<List<InvoiceDTO>>> findInvoicesAbove() {
+        var invoiceDTOList = invoiceControllerContract.findInvoicesAbove();
+        return ResponseEntity.ok(RestResponse.of(invoiceDTOList));
+    }
+
+    @GetMapping("/average")
+    public ResponseEntity<RestResponse<String>> findAverageInvoicesAbove() {
+        var averageAmount = invoiceControllerContract.findAverageInvoicesAbove();
+        return ResponseEntity.ok(RestResponse.of(
+                String.format("The average of invoices over 1500 TL in the system: %s", averageAmount)));
+    }
+
+    @GetMapping("/name")
+    public ResponseEntity<RestResponse<List<String>>> findCustomersBelowAmount() {
+        var nameList = invoiceControllerContract.findCustomersBelowAmount();
+        return ResponseEntity.ok(RestResponse.of(nameList));
+    }
+
 
 }
