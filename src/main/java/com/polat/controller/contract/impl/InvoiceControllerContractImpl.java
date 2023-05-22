@@ -88,5 +88,11 @@ public class InvoiceControllerContractImpl implements InvoiceControllerContract 
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<String> findSectorBelowAmount() {
+        double threshold = Constants.AVERAGE_THRESHOLD;
+        return invoiceService.findSectorByAverageAmountLessThan(threshold);
+    }
+
 
 }

@@ -21,4 +21,6 @@ public interface InvoiceControllerContract {
     Double findAverageInvoicesAbove();
 
     List<String> findCustomersBelowAmount();
+
+    List<String> findSectorBelowAmount();
 }

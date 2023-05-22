@@ -58,5 +58,11 @@ public class InvoiceController {
         return ResponseEntity.ok(RestResponse.of(nameList));
     }
 
+    @GetMapping("/sector")
+    public ResponseEntity<RestResponse<List<String>>> findSectorBelowAmount() {
+        var sectorList = invoiceControllerContract.findSectorBelowAmount();
+        return ResponseEntity.ok(RestResponse.of(sectorList));
+    }
+
 
 }

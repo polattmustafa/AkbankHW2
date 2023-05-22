@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
  */
 public record InvoiceDTO(Long id,
                          Double amount,
+                         String sector,
                          LocalDateTime amountDate,
                          Long customerId) {
 }

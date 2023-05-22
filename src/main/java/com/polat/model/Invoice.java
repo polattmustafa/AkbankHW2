@@ -28,6 +28,9 @@ public class Invoice extends BaseModel{
     @Column(name = "AMOUNTDATE")
     private LocalDateTime amountDate;
 
+    @Column(name = "SECTOR", length = 50)
+    private String sector;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUSTOMER", nullable = false)
     Customer customer;
