@@ -32,6 +32,6 @@ public class Customer extends BaseModel{
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "customer")
-    List<Invoice> invoiceList = new ArrayList<>();
+    private List<Invoice> invoiceList = new ArrayList<>();
 
 }

@@ -33,6 +33,6 @@ public class Invoice extends BaseModel{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CUSTOMER", nullable = false)
-    Customer customer;
+    private Customer customer;
 
 }
